@@ -1,0 +1,38 @@
+server:
+  port: 10000
+
+flyway:
+  enabled: true
+  locations: db/migration
+
+#spring:
+#  datasource:
+#    url:
+#    username:
+#    password:
+#    driver-class-name:
+#    dbcp2:
+#      max-total: 30
+#      min-idle: 5
+
+customize:
+  datasource:
+    url: jdbc:mysql://localhost/dhwang?useUnicode=true&characterEncoding=GBK&useSSL=false&autoReconnect=true
+    username: dhwang
+    password: dhwang
+    driver-class-name: com.mysql.jdbc.Driver
+    dbcp2:
+      max-total: 30
+      min-idle: 5
+
+  redis:
+    database: 0
+    pool:
+      max-total: 20
+      max-idle: 10
+      min-idle: 0
+      max-active: 10
+      max-wait: 10000
+    sentinel:
+      master: mymaster
+      nodes: localhost:26379

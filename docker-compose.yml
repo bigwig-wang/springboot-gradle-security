@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  redis-sentinel:
+    image: bitnami/redis-sentinel:latest
+    ports:
+      - 26379:26379
+    environment:
+      - REDIS_MASTER_HOST=localhost
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+  mysql:
+    image: mysql:5.7
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dhwang
+      - MYSQL_PASSWORD=dhwang
+      - MYSQL_DATABASE=dhwang
+    ports:
+      - 3306:3306
+#    volumes:
+#      - ./mysql-local/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
